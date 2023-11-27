@@ -78,17 +78,18 @@ class QBTBatchMove(object):
             count += 1
             # Fire and forget
             self.discovered_files.add(fast_resume)
-            Thread(
-                target=fast_resume.replace_paths,
-                args=[
-                    existing_path,
-                    new_path,
-                    regex_path,
-                    target_os,
-                    True,
-                    False,
-                ],
-            ).start()
+            fast_resume.replace_paths(existing_path, new_path, regex_path, target_os, True, False)
+            # Thread(
+            #     target=fast_resume.replace_paths,
+            #     args=[
+            #         existing_path,
+            #         new_path,
+            #         regex_path,
+            #         target_os,
+            #         True,
+            #         False,
+            #     ],
+            # ).start()
         logger.info(
             f"{'✔️' if count else '⚠️'} "
             f"Processed {count} relevant fastresume "
